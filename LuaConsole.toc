@@ -8,3 +8,5 @@
 
 core.lua
 keywords.lua
+whereis.lua
+profile.lua

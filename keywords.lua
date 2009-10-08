@@ -1,5 +1,14 @@
 local keys = LuaConsole.KeyWords
 
+LuaConsole.KeyWords["^mouse"] = function(text)
+	frame = GetMouseFocus()
+	if(text == "") then
+		LuaConsole:Print(frame:GetName())
+	else
+		return "frame"..text
+	end
+end
+
 keys["^run$"] = function()
 	return LuaConsole.ScriptBox:GetText()
 end
@@ -62,6 +71,8 @@ end
 keys["^/?help$"] = function(rest, all)
 	LuaConsole:AddMessage("Overview over LuaConsole key words:")
 	LuaConsole:AddMessage(" |cffee8800height [number]|r: Set the console's height (default 300)")
+	LuaConsole:AddMessage(" |cffee8800mouse|r: The currently hovered frame")
+	LuaConsole:AddMessage(" |cffee8800whereis [frame]|r: Draw a border around the defined frame")
 	LuaConsole:AddMessage(" |cffee8800run|r: Run the code from the script box on the right")
 	LuaConsole:AddMessage(" |cffee8800clear|r: Clear all lines")
 	LuaConsole:AddMessage(" |cffee8800exit|r: Hide the console")

@@ -1,5 +1,5 @@
 local borders = {}
-funnction LuaConsole:WhereIs(frame)
+function LuaConsole:WhereIs(frame)
 	if(type(frame) == "string") then
 		if(frame == "clear") then
 			for _, v in pairs(borders) do v:Hide() end
