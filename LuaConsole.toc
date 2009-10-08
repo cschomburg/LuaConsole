@@ -1,0 +1,10 @@
+## Interface: 30200
+## Title: LuaConsole
+## Author: Cargor
+## Version: 1.0
+## X-eMail: xconstruct@gmail.com
+## X-Website: http://www.xconstruct.net
+## Notes: Ingame lua console with table-browsing.
+
+core.lua
+keywords.lua

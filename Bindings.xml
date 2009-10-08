@@ -1,0 +1,5 @@
+<Bindings>
+	<Binding name="LUACONSOLE" header="LUACONSOLE">
+		LuaConsole:Show()
+	</Binding>
+</Bindings>
