@@ -13,10 +13,6 @@ keys["^run$"] = function()
 	return LuaConsole.ScriptBox:GetText()
 end
 
-keys["%~script"] = function(rest, all)
-	return all:gsub("%~script", LuaConsole.ScriptBox:GetText())
-end
-
 keys["^height "] = function(text)
 	if(text == "full") then
 		text = UIParent:GetHeight()
@@ -54,6 +50,10 @@ end
 
 keys["%$"] = function(rest, all)
 	return all:gsub("%$", "LuaConsole.GetCurrentTable()")
+end
+
+keys["~"] = function(rest, all)
+	return all:gsub("~", "LuaConsoleHome")
 end
 
 keys["^%."] = function(text)

@@ -10,7 +10,7 @@ local user = UnitName("player").."@"..GetRealmName()
 local prefix
 local keywords = {}
 LuaConsole.KeyWords = keywords
-local currTable, currTableName = LuaConsole, "~"
+local currTable, currTableName
 
 typeColors = {
 	["string"] = "ffff00",
@@ -106,7 +106,18 @@ local function setPrefix(text)
 	prefix = ("|cff9090ff%s:%s%s|r "):format(user, currTableName, text)
 	prefixText:SetText(prefix)
 end
-setPrefix("$")
+
+LuaConsole:RegisterEvent("PLAYER_LOGIN")
+LuaConsole:SetScript("OnEvent", function(self)
+	LuaConsoleHome = LuaConsoleHome or {}
+	scriptBox:SetText(LuaConsoleHome.ScriptBox or "")
+	self:SetCurrentTable()
+	setPrefix("$")
+end)
+
+scriptBox:SetScript("OnTextChanged", function(self)
+	LuaConsoleHome.ScriptBox = scriptBox:GetText()
+end)
 
 editBox:SetScript("OnEscapePressed", function(self) LuaConsole:Hide() end)
 editBox:SetScript("OnEnterPressed", function(self)
@@ -147,8 +158,8 @@ end
 
 function LuaConsole:SetCurrentTable(table, name)
 	name = name and name:gsub("LuaConsole%.GetCurrentTable%(%)", currTableName)
-	currTable = table or _G
-	currTableName = (table == _G and "_G") or (table == self and "~") or name or tostring(table):trim("table: ")
+	currTable = table or LuaConsoleHome
+	currTableName = (currTable == _G and "_G") or (currTable == LuaConsoleHome and "~") or name or tostring(table):trim("table: ")
 end
 
 function LuaConsole:GetCurrentTable()
