@@ -12,15 +12,8 @@ local keywords = {}
 LuaConsole.KeyWords = keywords
 local currTable, currTableName
 
-typeColors = {
-	["string"] = "ffff00",
-	["function"] = "00cc99",
-	["number"] = "00ff00",
-	["nil"] = "ff5050",
-	["table"] = "ee8800",
-	["boolean"] = "aad372",
-}
-LuaConsole.TypeColors = typeColors
+local typeFormat = {}
+LuaConsole.TypeFormat = typeFormat
 
 LuaConsole:Hide()
 LuaConsole:SetWidth(UIParent:GetWidth())
@@ -92,14 +85,13 @@ local function processCache()
 		if(text and text:match(word)) then
 			text = func(text:gsub(word, ""), text)
 		end
+		if(not text) then return end
 	end
 
-	if(text) then
-		local func, errorMsg = loadstring(text)
-		if(errorMsg) then return LuaConsole:AddMessage(errorMsg, 1, 0, 0) end
-		local success, errorMsg = pcall(func)
-		if(not success) then return LuaConsole:AddMessage(errorMsg, 1, 0, 0) end
-	end
+	local func, errorMsg = loadstring(text)
+	if(errorMsg) then return LuaConsole:AddMessage(errorMsg, 1, 0, 0) end
+	local success, errorMsg = pcall(func)
+	if(not success) then return LuaConsole:AddMessage(errorMsg, 1, 0, 0) end
 end
 
 local function setPrefix(text)
@@ -150,7 +142,7 @@ function LuaConsole:Print(...)
 	for i=1, select("#", ...) do
 		local value = select(i, ...)
 		if(strText) then strText = strText..", " else strText = "" end
-		strText = ("%s|cff%s%s|r"):format(strText, typeColors[type(value)] or "ffffff", tostring(value):gsub("|", "||"))
+		strText = ("%s|cff%s%s|r"):format(strText, typeFormat[type(value)](value))
 	end
 	if(strText) then LuaConsole:AddMessage(strText) end
 	ans = ...

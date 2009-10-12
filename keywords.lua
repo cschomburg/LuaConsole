@@ -81,5 +81,5 @@ keys["^/?help$"] = function(rest, all)
 	LuaConsole:AddMessage(" |cffee8800cd [table]|r: change current table")
 	LuaConsole:AddMessage(" |cffee8800ls [table]|r: output contents of a table")
 	LuaConsole:AddMessage(" |cffee8800$|r: inserts the current table in your code")
-	LuaConsole:AddMessage(" |cffee8800~script|r: inserts the script box contents in your code")
+	LuaConsole:AddMessage(" |cffee8800~|r: inserts the the home table in your code")
 end
