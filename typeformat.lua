@@ -1,12 +1,3 @@
-typeFormat = {
-	["string"] = "ffff00",
-	["function"] = "00cc99",
-	["number"] = "00ff00",
-	["nil"] = "ff5050",
-	["table"] = "ee8800",
-	["boolean"] = "aad372",
-}
-
 local globalNames = setmetatable({}, {__index = function(self, index)
 	for k,v in pairs(_G) do
 		if(v == index) then
@@ -16,6 +7,7 @@ local globalNames = setmetatable({}, {__index = function(self, index)
 	end
 	return tostring(index)
 end})
+LuaConsole.GlobalNames = globalNames
 
 local typeFormat = LuaConsole.TypeFormat
 setmetatable(typeFormat, {__index = function(self, index) return typeFormat.default end})
@@ -25,7 +17,7 @@ typeFormat["default"] = function(value)
 end
 
 typeFormat["string"] = function(value)
-	return "ffff00", value:gsub("|", "||")
+	return "ffff00", '"'..value:gsub("|", "||")..'"'
 end
 
 typeFormat["function"] = function(value)
