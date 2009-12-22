@@ -68,6 +68,11 @@ keys["||"] = function(rest, all)
 	return all:gsub("||", "|")
 end
 
+keys["^search "] = function(text)
+	local match, env = text:match("^(.+)%s?(.-)$")
+	return "LuaConsole:DoSearch(\""..(match == "" and "nil" or match).."\", "..(env == "" and "nil" or env)..")"
+end
+
 keys["^/?help$"] = function(rest, all)
 	LuaConsole:AddMessage("Overview over LuaConsole key words:")
 	LuaConsole:AddMessage(" |cffee8800height [number]|r: Set the console's height (default 300)")

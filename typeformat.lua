@@ -13,7 +13,7 @@ local typeFormat = LuaConsole.TypeFormat
 setmetatable(typeFormat, {__index = function(self, index) return typeFormat.default end})
 
 typeFormat["default"] = function(value)
-	return "ffffff", value
+	return "ffffff", tostring(value)
 end
 
 typeFormat["string"] = function(value)
@@ -25,7 +25,7 @@ typeFormat["function"] = function(value)
 end
 
 typeFormat["number"] = function(value)
-	return "00ff00", number
+	return "00ff00", value
 end
 
 typeFormat["nil"] = function(value)

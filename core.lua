@@ -157,6 +157,23 @@ end
 function LuaConsole:GetCurrentTable()
 	return currTable, currTableName
 end
+
+local MAX_RESULTS = 10
+
+function LuaConsole:DoSearch(match, env)
+	env = env or _G
+	local results, str = 0
+	for k in pairs(env) do
+		if(k:match(match)) then
+			results = results + 1
+			if(results <= MAX_RESULTS) then
+				LuaConsole:AddMessage(k)
+			end
+		end
+	end
+	if(results > MAX_RESULTS) then LuaConsole:AddMessage("... and "..(results-MAX_RESULTS).." more results", 1,1,0) end
+end
+
 LuaConsole:AddMessage("|cff00ff00Welcome in the LuaConsole! Type in 'help' for more info!")
 
 debug = function(...) LuaConsole:Print("debug:", ...) end
