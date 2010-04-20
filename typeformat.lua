@@ -1,6 +1,6 @@
 local globalNames = setmetatable({}, {__index = function(self, index)
 	for k,v in pairs(_G) do
-		if(v == index) then
+		if(v == index and k ~= "frame") then
 			self[index] = k
 			return k
 		end
@@ -33,8 +33,8 @@ typeFormat["nil"] = function(value)
 end
 
 typeFormat["table"] = function(value)
-	local type = (value.GetFrameType and value:GetFrameType()) or (value.GetObjectType and value:GetObjectType())
-	return "ee8800", globalNames[value]..(type and "<"..type..">" or "")
+	local type = (value.GetObjectType and value:GetObjectType())
+	return "ee8800", (value.GetName and value:GetName() or globalNames[value])..(type and "<"..type..">" or "")
 end
 
 typeFormat["boolean"] = function(value)

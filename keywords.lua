@@ -3,7 +3,7 @@ local keys = LuaConsole.KeyWords
 LuaConsole.KeyWords["^mouse"] = function(text)
 	frame = GetMouseFocus()
 	if(text == "") then
-		LuaConsole:Print(frame:GetName())
+		LuaConsole:Print(frame)
 	else
 		return "frame"..text
 	end
