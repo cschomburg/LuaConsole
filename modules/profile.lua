@@ -9,7 +9,7 @@ local funcString = [[
 
 LuaConsole.KeyWords["^profile"] = function(msg)
 	local iterations
-	iterations, msg = msg:match("^(%x+)%s+(.*)$")
+	iterations, msg = msg:match("^(%x+)%s+(.+)$")
 	local str = funcString:gsub("$iterations", iterations):gsub("$msg", msg)
 	return str
 end

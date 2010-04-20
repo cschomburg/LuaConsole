@@ -37,6 +37,7 @@ end
 keys["^<<"] = function(text)
 	return "LuaConsole:Print("..text..")"
 end
+keys["^="] = keys["^<<"]
 
 keys["^cd "] = function(text)
 	if(text == "~") then text = "LuaConsole" end
