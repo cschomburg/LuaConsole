@@ -126,7 +126,7 @@ editBox:SetScript("OnEnterPressed", function(self)
 	end
 end)
 editBox:SetScript("OnTextChanged", function(self)
-	if(self:GetText() == "^") then
+	if(self:GetText():match("^[`~%^]")) then
 		self:SetText("")
 	end
 end)

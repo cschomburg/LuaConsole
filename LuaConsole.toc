@@ -13,3 +13,4 @@ typeformat.lua
 
 modules\whereis.lua
 modules\profile.lua
+modules\mover.lua
