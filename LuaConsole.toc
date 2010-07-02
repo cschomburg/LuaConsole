@@ -6,6 +6,8 @@
 ## X-Website: http://www.xconstruct.net
 ## Notes: Ingame lua console with table-browsing.
 ## SavedVariables: LuaConsoleHome
+## LoadManagers: AddonLoader
+## X-LoadOn-Always: delayed
 
 core.lua
 keywords.lua

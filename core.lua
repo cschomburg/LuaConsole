@@ -99,8 +99,10 @@ local function setPrefix(text)
 	prefixText:SetText(prefix)
 end
 
-LuaConsole:RegisterEvent("PLAYER_LOGIN")
-LuaConsole:SetScript("OnEvent", function(self)
+LuaConsole:RegisterEvent("ADDON_LOADED")
+LuaConsole:SetScript("OnEvent", function(self, event, addon)
+	if(addon ~= "LuaConsole") then return end
+
 	LuaConsoleHome = LuaConsoleHome or {}
 	scriptBox:SetText(LuaConsoleHome.ScriptBox or "")
 	self:SetCurrentTable()
